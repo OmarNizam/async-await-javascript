@@ -1,6 +1,6 @@
 # Synchronous and Asynchronous Code
 
-First of all we need to know that there are synchronous and asynchronous code.
+First of all we need to know that there are `synchronous` and `asynchronous` code.
 
 Most of the code is Synchronous code and that mean the code is executed line by line in the exact order that we defined in our our code.
 So each line of code wait for previous line to finish
@@ -54,6 +54,27 @@ Callback functions alone do not make code asynchronous, that's essential to keep
 [1, 2, 3].map(v => v * 2);
 //the call back inside the map dos NOT automatically make code asynchronous
 ```
+
+`Asynchronous behavior` in JavaScript like `Ajax` calls. And Ajax calls are probably the most important use case
+
+---
+
+## AJAX
+
+So Ajax stands for **A**synchronous **J**avaScript **A**nd **X**ML, Allows us to communicate with remote web servers in an **asynchronous way.** With AJAX calls, we can **request data** from a web server dynamically.
+Without reloading the page so that we can use that data in our application dynamically.
+
+So let's say that we have our JavaScript application running in the browser, which is also called the Client.
+And we want the application to get some data from a web server.
+And let's say the data about countries that I was talking about earlier.
+
+So with Ajax,
+
+We can do an HTTP request to the server, which has this data.
+And the server will then set back a response containing that data that we requested.
+And this back and forth between Client and server all happens asynchronously in the background.
+And there can even be different types of requests, like get requests to receive data or post requests to send data to a server.
+AJAX calls types: `GET`, `POST`, `PUT/PATCH`, `DELETE`
 
 ---
 
