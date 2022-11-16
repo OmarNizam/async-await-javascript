@@ -205,6 +205,7 @@ whereAmI('netherlands');
 ```
 
 Let's see other example how to chain promises in async call along with error handling.
+So in this example
 
 ```js
 const axios = require("axios");
