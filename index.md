@@ -6,10 +6,10 @@ Most of the code is Synchronous code and that mean the code is executed line by 
 So each line of code wait for previous line to finish
 
 ```js
-const p = document.querySelector('.p');
-p.textContent = 'My Name is Omar!';
-alert('Text set!');
-p.style.color = 'red'; // will start after alert finish
+const p = document.querySelector(".p");
+p.textContent = "My Name is Omar!";
+alert("Text set!");
+p.style.color = "red"; // will start after alert finish
 ```
 
 But imagine that execution would have to wait
@@ -20,11 +20,11 @@ Because meanwhile, nothing on the page would work during these five seconds.
 And so that's where asynchronous code comes into play.
 
 ```js
-const p = document.querySelector('.p');
+const p = document.querySelector(".p");
 setTimeout(function () {
-  p.textContent = 'My Name is Omar!';
+  p.textContent = "My Name is Omar!";
 }, 5000);
-p.style.color = 'red';
+p.style.color = "red";
 ```
 
 Now, anyway, the first line of code is still synchronous here, and we also move to the second line in a synchronous way.
@@ -51,7 +51,7 @@ And so that's what asynchronous programming is all about.
 Callback functions alone do not make code asynchronous, that's essential to keep in mind. Only some of them like setTimeout
 
 ```js
-[1, 2, 3].map(v => v * 2);
+[1, 2, 3].map((v) => v * 2);
 //the call back inside the map dos NOT automatically make code asynchronous
 ```
 
@@ -92,8 +92,8 @@ A Promise is in one of these states:
 - _rejected_: meaning that the operation failed.
 
 ```js
-const axios = require('axios'); // Make a get request for country data
-const request = axios.get('https://restcountries.com/v2/name/netherlands');
+const axios = require("axios"); // Make a get request for country data
+const request = axios.get("https://restcountries.com/v2/name/netherlands");
 console.log(request); // Promise { <pending> }
 ```
 
@@ -154,7 +154,7 @@ The keyword `await` makes JavaScript wait until that promise settles and returns
 We can have one or more await statements. And we can use the promise returned from the axios function and so let's now, use or API again, to search for a country basically.
 
 ```js
-const axios = require('axios');
+const axios = require("axios");
 
 async function whereAmI(country) {
   const response = await axios.get(
@@ -163,7 +163,7 @@ async function whereAmI(country) {
   console.log(response);
 }
 
-whereAmI('netherlands');
+whereAmI("netherlands");
 ```
 
 We await axios to get the data response then just assign this value to a response.
@@ -207,7 +207,7 @@ whereAmI('netherlands');
 Let's see other example how to chain promises in async call along with error handling.
 
 ```js
-const axios = require('axios');
+const axios = require("axios");
 
 const whereAmI = async function (lat, lng) {
   try {
@@ -231,5 +231,10 @@ const whereAmI = async function (lat, lng) {
 };
 whereAmI(52.50177, 13.40483);
 whereAmI(52.36039, 4.89688);
-console.log('FIRST');
+console.log("FIRST");
+/** OUT PUT
+      FIRST
+      You are in Amsterdam, Netherlands
+      You are in Berlin, Germany
+     */
 ```
