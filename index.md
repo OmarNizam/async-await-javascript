@@ -175,14 +175,9 @@ So of course behind the scenes, we are still using promises. We are simply using
 
 ## Error Handling with try ... catch
 
-It works with async/await. So with async/await, we can't use the catch method
-
-that we use before, because we can really attach it anywhere, right.
-
+It works with async/await. So with async/await, we can't use the catch method that we use before, because we can really attach it anywhere, right.
 So instead, we use something called a `try` `catch` statement.
-
 And the try catch statement is actually used in regular JavaScript as well.
-
 It's been in the language probably since the beginning. So try catch has nothing to do with async/await.
 
 A `catch-block` contains statements that specify what to do if an exception is thrown in the try-block. If any statement within the try-block (or in a function called from within the try-block) throws an exception, control is immediately shifted to the catch-block. If no exception is thrown in the try-block, the catch-block is skipped.
