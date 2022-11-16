@@ -226,6 +226,8 @@ const whereAmI = async function (lat, lng) {
     const resCountry = await axios.get(
       `https://restcountries.com/v2/name/${data.country}`
     );
+    if (resLocation.status !== 200)
+      throw new Error(`Problem with geocoding ${resCountry.status}`);
 
     // console.log(resCountry.data[0]);
   } catch (err) {
