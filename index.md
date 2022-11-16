@@ -38,7 +38,7 @@ So this callback that we just talked about is registered, and then we immediatel
 So the main code is not being blocked and execution does not wait for the asynchronous timer to finish its work.
 And that's the big difference between synchronous and asynchronous code. So previously we had to wait for the user to click on the alert window to continue execution. And again, that's because alert is blocking synchronous code, but now with this timer, the callback is actually asynchronous. And so it's only going to be executed after the timer has finished. And so therefore we say, that it's non-blocking code because in the meantime, the rest of the code can keep running normally.
 
-## So
+So:
 
 - Asynchronous code it is executed **after a task that runs in the "background" finishes**
 - Asynchronous code is **non-blocking**.
@@ -76,9 +76,35 @@ And this back and forth between Client and server all happens asynchronously in 
 And there can even be different types of requests, like get requests to receive data or post requests to send data to a server.
 AJAX calls types: `GET`, `POST`, `PUT/PATCH`, `DELETE`
 
+To use AJAX calls there is a javascript build in function called `fetch`, or use more modern libraries like `axios`
+
+## Promise
+
+The `Promise` object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+It is used basically as a placeholder for the future result of an asynchronous operation.
+
+Ex: The `response` of ajax call is a promise.
+
+A Promise is in one of these states:
+
+- _pending_: initial state, neither fulfilled nor rejected.
+- _fulfilled_: meaning that the operation was completed successfully.
+- _rejected_: meaning that the operation failed.
+
+```js
+const axios = require('axios'); // Make a get request for country data
+const request = axios.get('https://restcountries.com/v2/name/netherlands');
+console.log(request); // Promise { <pending> }
+```
+
+In this case axios is building a promise for getting data from API.
+
 ---
 
-There's a special syntax to work with promises in a more comfortable fashion, called "async/await". It's surprisingly easy to understand and use.
+## Async/Await
+
+since `ES2017`, there is now an even better and easier way to consume
+promises, which is called a `sync` `await`. It's surprisingly easy to understand and use.
 
 ## Async functions
 
@@ -113,3 +139,36 @@ functionName().then(alert); // 1
 ```
 
 So, `async` ensures that the function returns a promise, and wraps non-promises in it. Simple enough, right? But not only that. There's another keyword, `await`, that works only inside `async` functions, and it's pretty cool.
+
+## Await
+
+The syntax:
+
+```js
+// works only inside async functions
+let value = await promise;
+```
+
+The keyword `await` makes JavaScript wait until that promise settles and returns its result.
+
+We can have one or more await statements. And we can use the promise returned from the axios function and so let's now, use or API again, to search for a country basically.
+
+```js
+const axios = require('axios');
+
+async function whereAmI(country) {
+  const response = await axios.get(
+    `https://restcountries.com/v2/name/${country}`
+  );
+  console.log(response);
+}
+
+whereAmI('netherlands');
+```
+
+We await axios to get the data response then just assign this value to a response.
+Before we had to mess with callback functions and that was true in callback hell, but also by consuming promises with the then method.
+But now with a sync await, that is just completely gone.
+Now, before you start using a sync await all over the place, you need to first understand that a sink await is in fact, simply syntactic sugar over the then method in promises.
+
+So of course behind the scenes, we are still using promises. We are simply using a different way of consuming them here.
