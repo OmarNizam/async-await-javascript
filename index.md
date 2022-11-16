@@ -57,8 +57,6 @@ Callback functions alone do not make code asynchronous, that's essential to keep
 
 `Asynchronous behavior` in JavaScript like `Ajax` calls. And Ajax calls are probably the most important use case
 
----
-
 ## AJAX
 
 So Ajax stands for **A**synchronous **J**avaScript **A**nd **X**ML, Allows us to communicate with remote web servers in an **asynchronous way.** With AJAX calls, we can **request data** from a web server dynamically.
@@ -98,8 +96,6 @@ console.log(request); // Promise { <pending> }
 ```
 
 In this case axios is building a promise for getting data from API.
-
----
 
 ## Async/Await
 
