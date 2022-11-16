@@ -172,3 +172,64 @@ But now with a sync await, that is just completely gone.
 Now, before you start using a sync await all over the place, you need to first understand that a sink await is in fact, simply syntactic sugar over the then method in promises.
 
 So of course behind the scenes, we are still using promises. We are simply using a different way of consuming them here.
+
+## Error Handling with try ... catch
+
+It works with async/await. So with async/await, we can't use the catch method
+
+that we use before, because we can really attach it anywhere, right.
+
+So instead, we use something called a `try` `catch` statement.
+
+And the try catch statement is actually used in regular JavaScript as well.
+
+It's been in the language probably since the beginning. So try catch has nothing to do with async/await.
+We can still use it to `catch errors` in async functions. But before we do that, let's look at a more simple example, just to see how try catch works.
+So we can basically wrap all our code in a try block. And so JavaScript will then
+basically try to execute this code.
+
+```js
+async function whereAmI(country) {
+  try {
+    const request = await axios.get(
+      `https://restcountries.com/v2/name/${country}`
+    );
+    const data = request.data[0];
+    console.log(data);
+  } catch (err) {
+    console.error(`${err 💥}`);
+  }
+}
+
+whereAmI('netherlands');
+```
+
+Let's see other example how to chain promises in async call along with error handling.
+
+```js
+const axios = require('axios');
+
+const whereAmI = async function (lat, lng) {
+  try {
+    const resLocation = await axios.get(
+      `https://geocode.xyz/${lat},${lng}?json=1`
+    );
+    const data = resLocation.data;
+    if (resLocation.status !== 200)
+      throw new Error(`Problem with geocoding ${resLocation.status}`);
+
+    console.log(`You are in ${data.city}, ${data.country}`);
+
+    const resCountry = await axios.get(
+      `https://restcountries.com/v2/name/${data.country}`
+    );
+
+    // console.log(resCountry.data[0]);
+  } catch (err) {
+    console.error(`${err.message} 💥`);
+  }
+};
+whereAmI(52.50177, 13.40483);
+whereAmI(52.36039, 4.89688);
+console.log('FIRST');
+```
