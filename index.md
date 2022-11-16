@@ -209,7 +209,7 @@ Let's see other example how to chain promises in async call along with error han
 ```js
 const axios = require("axios");
 
-const whereAmI = async function (lat, lng) {
+const whereAmI = async function (inlatt: lat, inlongt: lng) {
   try {
     const resLocation = await axios.get(
       `https://geocode.xyz/${lat},${lng}?json=1`
