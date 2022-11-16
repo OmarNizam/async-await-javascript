@@ -184,7 +184,14 @@ So instead, we use something called a `try` `catch` statement.
 And the try catch statement is actually used in regular JavaScript as well.
 
 It's been in the language probably since the beginning. So try catch has nothing to do with async/await.
-We can still use it to `catch errors` in async functions. But before we do that, let's look at a more simple example, just to see how try catch works.
+
+A `catch-block` contains statements that specify what to do if an exception is thrown in the try-block. If any statement within the try-block (or in a function called from within the try-block) throws an exception, control is immediately shifted to the catch-block. If no exception is thrown in the try-block, the catch-block is skipped.
+
+The `finally` block will always execute before control flow exits the try...catch...finally construct. It always executes, regardless of whether an exception was thrown or caught.
+
+You can nest one or more try statements. If an inner try statement does not have a catch-block, the enclosing try statement's catch-block is used instead.
+
+We can still use it to `catch errors` in async functions. But before we do that,let's look at a more simple example, just to see how try catch works.
 So we can basically wrap all our code in a try block. And so JavaScript will then
 basically try to execute this code.
 
@@ -210,7 +217,7 @@ So in this example
 ```js
 const axios = require("axios");
 
-const whereAmI = async function (inlatt: lat, inlongt: lng) {
+const whereAmI = async function (lat, lng) {
   try {
     const resLocation = await axios.get(
       `https://geocode.xyz/${lat},${lng}?json=1`
@@ -228,14 +235,18 @@ const whereAmI = async function (inlatt: lat, inlongt: lng) {
     // console.log(resCountry.data[0]);
   } catch (err) {
     console.error(`${err.message} 💥`);
+  } finally {
+    console.log("finally do something optional");
   }
 };
 whereAmI(52.50177, 13.40483);
 whereAmI(52.36039, 4.89688);
 console.log("FIRST");
 /** OUT PUT
-      FIRST
-      You are in Amsterdam, Netherlands
-      You are in Berlin, Germany
+  FIRST
+  You are in Amsterdam, Netherlands
+  You are in Berlin, Germany
+  finally do something optional
+  finally do something optional
      */
 ```
