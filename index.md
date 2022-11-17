@@ -302,3 +302,5 @@ get3Countries("netherlands", "canada", "portugal");
 
 So as we saw promises are running in parallel, no longer in sequence now.
 `Promise.all` sends an `array` and receive an `array`
+If one of the promises get reject, all the promises get rejected because the are in parallel.
+Great, so whenever you have a situation in which you need to do **multiple asynchronous operations** at the same time, and operations that don't depend on one another, then you should always, `always` run them in parallel, just like we did here using promise.all.
