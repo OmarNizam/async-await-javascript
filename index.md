@@ -203,12 +203,15 @@ whereAmI('netherlands');
 ```
 
 Let's see other example how to chain promises in async call along with error handling.
-So in this example
+
+So in this example there are two axios AJAX calls, one to Geocode API to get all data related to specific location by entering two parameters (latitude and longitude) and in data object we will find city and country of the location. The second call to restcountries API is depending on data return from first promise.
+As we see we wrapped the logic inside async function in `try` block including api calls, also use catch to handle error.
+Finally block is optional to use, the code will be executed in it as last in the async call
 
 ```js
 const axios = require("axios");
 
-const whereAmI = async function (lat, lng) {
+const whereAmI = async function (latitude: lat, longitude: lng) {
   try {
     const resLocation = await axios.get(
       `https://geocode.xyz/${lat},${lng}?json=1`
