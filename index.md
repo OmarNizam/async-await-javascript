@@ -247,7 +247,7 @@ console.log("FIRST");
      */
 ```
 
-Now, if we want to do multiple promises and we write them like in the next example. They will be called after each other so that means they will spend a lot time comparing if can call them in `parallel`
+Now, if we want to do multiple promises and we write them like in the next example. They will be called after each other and wait, so that means they will spend a lot time comparing if can call them in `parallel` all in one at the same time
 
 ```js
 const get3Countries = async function (country1, country2, country3) {
@@ -276,7 +276,7 @@ get3Countries("netherlands", "canada", "portugal");
 //[ 'Amsterdam', 'Ottawa', 'Lisbon' ]
 ```
 
-To to Run Promises in `parallel` javascript come up with `promise.all` combinator function.
+To Run Promises in `parallel` javascript come up with `promise.all` combinator function.
 Now, this function here takes in an array of promises, and it will return a new promise, which will then run all the promises in the array at the same time.
 
 ```js
