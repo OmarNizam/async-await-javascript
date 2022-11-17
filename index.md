@@ -3,6 +3,12 @@
 - [Synchronous and Asynchronous Code](#synchronous-and-asynchronous-code)
 - [AJAX](#ajax)
 - [Promise](#promise)
+- [Async functions](#async-functions)
+- [Await](#await)
+- [Error Handling with try ... catch](#error-handling-with-try-and-catch)
+- [Chain Promises](#chain-promises)
+- [Running Promises In Sequence](#running-promises-in-sequence)
+- [Running Promises In Parallel](#running-promises-in-parallel)
 
 ## Synchronous and Asynchronous Code
 
@@ -180,7 +186,7 @@ Now, before you start using a sync await all over the place, you need to first u
 So of course behind the scenes, we are still using promises. We are simply using a different way of consuming them here.
 [Back to top](#navigator)
 
-## Error Handling with try ... catch
+## Error Handling with try and catch
 
 It works with async/await. So with async/await, we can't use the catch method that we use before, because we can really attach it anywhere, right.
 So instead, we use something called a `try` `catch` statement.
@@ -212,6 +218,8 @@ async function whereAmI(country) {
 
 whereAmI('netherlands');
 ```
+
+[Back to top](#navigator)
 
 ## Chain promises
 
@@ -260,6 +268,8 @@ console.log("FIRST");
      */
 ```
 
+[Back to top](#navigator)
+
 ## Running Promises In Sequence
 
 Now, if we want to do multiple promises and we write them like in the next example. They will be called after each other and wait, so that means they will spend a lot time comparing if can call them in `parallel` all in one at the same time
@@ -291,6 +301,8 @@ get3Countries("netherlands", "canada", "portugal");
 //[ 'Amsterdam', 'Ottawa', 'Lisbon' ]
 ```
 
+[Back to top](#navigator)
+
 ## Running Promises In Parallel
 
 To Run Promises in `parallel` javascript come up with `promise.all` combinator function.
@@ -321,3 +333,5 @@ So as we saw promises are running in parallel, no longer in sequence now.
 `Promise.all` sends an `array` and receive an `array`
 If one of the promises get reject, all the promises get rejected because the are in parallel.
 Great, so whenever you have a situation in which you need to do **multiple asynchronous operations** at the same time, and operations that don't depend on one another, then you should always, `always` run them in parallel, just like we did here using promise.all.
+
+[Back to top](#navigator)
