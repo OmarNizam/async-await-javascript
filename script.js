@@ -61,7 +61,7 @@ const get3Countries = async function (country1, country2, country3) {
     ]);
 
     const capitals = data.map((country) => country.data[0].capital);
-    console.log([capitals]);
+    console.log(capitals);
   } catch (err) {
     console.error(`${err}`);
   }
