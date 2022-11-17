@@ -68,6 +68,7 @@ Callback functions alone do not make code asynchronous, that's essential to keep
 ```
 
 `Asynchronous behavior` in JavaScript like `Ajax` calls. And Ajax calls are probably the most important use case
+
 [Back to top](#navigator)
 
 ## AJAX
@@ -88,6 +89,7 @@ And there can even be different types of requests, like get requests to receive 
 AJAX calls types: `GET`, `POST`, `PUT/PATCH`, `DELETE`
 
 To use AJAX calls there is a javascript build in function called `fetch`, or use more modern libraries like `axios`
+
 [Back to top](#navigator)
 
 ## Promise
@@ -110,6 +112,7 @@ console.log(request); // Promise { <pending> }
 ```
 
 In this case axios is building a promise for getting data from API.
+
 [Back to top](#navigator)
 
 ## Async/Await
@@ -150,6 +153,7 @@ functionName().then(alert); // 1
 ```
 
 So, `async` ensures that the function returns a promise, and wraps non-promises in it. Simple enough, right? But not only that. There's another keyword, `await`, that works only inside `async` functions, and it's pretty cool.
+
 [Back to top](#navigator)
 
 ## Await
@@ -184,6 +188,7 @@ But now with a sync await, that is just completely gone.
 Now, before you start using a sync await all over the place, you need to first understand that a sink await is in fact, simply syntactic sugar over the then method in promises.
 
 So of course behind the scenes, we are still using promises. We are simply using a different way of consuming them here.
+
 [Back to top](#navigator)
 
 ## Error Handling with try and catch
