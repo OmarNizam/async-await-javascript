@@ -211,10 +211,10 @@ Finally block is optional to use, the code will be executed in it as last in the
 ```js
 const axios = require("axios");
 
-const whereAmI = async function (latitude: lat, longitude: lng) {
+const whereAmI = async function (latitude, longitude) {
   try {
     const resLocation = await axios.get(
-      `https://geocode.xyz/${lat},${lng}?json=1`
+      `https://geocode.xyz/${latitude},${longitude}?json=1`
     );
     const data = resLocation.data;
     if (resLocation.status !== 200)
@@ -246,3 +246,59 @@ console.log("FIRST");
   finally do something optional
      */
 ```
+
+Now, if we want to do multiple promises and we write them like in the next example. They will be called after each other so that means they will spend a lot time comparing if can call them in `parallel`
+
+```js
+const get3Countries = async function (country1, country2, country3) {
+  try {
+    const resCountry1 = await axios.get(
+      `https://restcountries.com/v2/name/${country1}`
+    );
+    const resCountry2 = await axios.get(
+      `https://restcountries.com/v2/name/${country2}`
+    );
+    const resCountry3 = await axios.get(
+      `https://restcountries.com/v2/name/${country3}`
+    );
+    const [data1] = resCountry1.data;
+    const [data2] = resCountry2.data;
+    const [data3] = resCountry3.data;
+
+    console.log([data1.capital, data2.capital, data3.capital]);
+  } catch (err) {
+    console.error(`${err}`);
+  }
+};
+
+get3Countries("netherlands", "canada", "portugal");
+
+//[ 'Amsterdam', 'Ottawa', 'Lisbon' ]
+```
+
+To to Run Promises in `parallel` javascript come up with `promise.all` combinator function.
+Now, this function here takes in an array of promises, and it will return a new promise, which will then run all the promises in the array at the same time.
+
+```js
+const get3Countries = async function (country1, country2, country3) {
+  try {
+    const data = await Promise.all([
+      await axios.get(`https://restcountries.com/v2/name/${country1}`),
+      await axios.get(`https://restcountries.com/v2/name/${country2}`),
+      await axios.get(`https://restcountries.com/v2/name/${country3}`),
+    ]);
+
+    const capitals = data.map((country) => country.data[0].capital);
+    console.log([capitals]);
+  } catch (err) {
+    console.error(`${err}`);
+  }
+};
+
+get3Countries("netherlands", "canada", "portugal");
+
+//[ 'Amsterdam', 'Ottawa', 'Lisbon' ]
+```
+
+So as we saw promises are running in parallel, no longer in sequence now.
+`Promise.all` sends an `array` and receive an `array`
